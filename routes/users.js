@@ -5,7 +5,7 @@ var router = express.Router();
 var Users = [{
   name: 'John',
   surname: 'Doe',
-  password: 'jnafjbnlsjdfblsjdkbflskjdfb',
+  password: 'mypassword',
   age: 35,
   address: 'Moffet Field, Nasa Research Park'
 }];
