@@ -11,9 +11,20 @@ var app = require('../app');
 app.set('port', PORT);
 app.set('testing', true);
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+var serverInitialized = function() {
+  debug('Express server listening on port ' + PORT);
+};
+
+var server = app.listen(app.get('port'), serverInitialized)
+.on('error', function(err){
+  if(err.code === 'EADDRINUSE'){
+    PORT++;
+    HOST = 'http://localhost:'+PORT;
+    app.set('port', PORT);
+    server = app.listen(app.get('port'), serverInitialized)
+  }
 });
+
 //////////////////////////////////
 
 var user = {
