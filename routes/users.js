@@ -17,14 +17,13 @@ router.get('/', function(req, res, next) {
 
 /* GET user . */
 router.get('/:name', function(req, res, next) {
-  console.log(params);
   for(var i=0;i<Users.length;i++){
       if(Users[i].name === req.params.name){
         res.status(200).json(Users[i]);
         return next();
       }
   }
-  res.status(404).end();
+  res.status(404).send('User not found!');
 });
 
 module.exports = router;
